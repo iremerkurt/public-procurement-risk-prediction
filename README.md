@@ -1,83 +1,86 @@
 # 📊 Public Procurement Risk Analysis and Risk Level Prediction
 
-# 📊 Kamu İhale Risk Analizi ve Risk Seviyesi Tahmini
-
-
-## 📌 Proje Hakkında / Project Overview
+## 📌 Project Overview
 
 This project presents an end-to-end machine learning pipeline for analyzing public procurement data and predicting procurement risk levels.
 
-Bu proje, kamu ihale verilerinin analiz edilmesi, risk faktörlerinin belirlenmesi ve makine öğrenmesi yöntemleri kullanılarak ihale risk seviyelerinin tahmin edilmesi amacıyla hazırlanmıştır.
+The main objective is to analyze public tender processes, identify potential risk factors, and classify tenders into different risk categories using machine learning techniques.
 
-Projede **Global Public Procurement Dataset (GPPD)** kullanılmıştır. Veri seti içerisinden Almanya'ya ait kamu ihale kayıtları analiz edilerek ihaleler:
+The project uses the **Global Public Procurement Dataset (GPPD)**. Due to the large size of the dataset, procurement records belonging to **Germany** were selected for analysis.
 
-- Düşük Risk
-- Orta Risk
-- Yüksek Risk
+Each procurement record is classified into one of three risk categories:
 
-olmak üzere üç farklı sınıfa ayrılmıştır.
+- Low Risk
+- Medium Risk
+- High Risk
 
-Çalışma kapsamında veri ön işleme, keşifsel veri analizi, özellik mühendisliği, risk skoru oluşturma ve makine öğrenmesi için veri hazırlama adımları uygulanmıştır.
+The project covers the complete machine learning workflow:
 
-
----
-
-# 🎯 Proje Amacı / Project Objective
-
-Bu projenin temel amacı:
-
-- Kamu ihalelerindeki risk faktörlerini analiz etmek,
-- Rekabet, süre ve fiyat değişkenlerinin etkisini incelemek,
-- İhale bazında risk göstergeleri oluşturmak,
-- Makine öğrenmesi modelleri ile ihale risk seviyelerini tahmin etmektir.
-
-
-Model, ihale süreçlerindeki:
-
-- Rekabet seviyesi,
-- Teklif bilgileri,
-- İhale süreleri,
-- Fiyat değişimleri,
-- Risk göstergeleri
-
-üzerinden risk tahmini gerçekleştirmek üzere hazırlanmıştır.
+- Data preprocessing
+- Exploratory Data Analysis (EDA)
+- Missing value handling
+- Outlier analysis
+- Feature engineering
+- Risk score creation
+- Feature selection
+- Machine learning data preparation
 
 
 ---
 
-# 📂 Kullanılan Veri Seti / Dataset
+# 🎯 Project Objective
 
-Projede:
+The main objectives of this project are:
+
+- Analyze risk factors in public procurement processes,
+- Investigate the impact of competition, duration, and price-related variables,
+- Create meaningful risk indicators,
+- Develop a machine learning pipeline for predicting procurement risk levels.
+
+
+The prediction process is based on:
+
+- Competition characteristics,
+- Bid information,
+- Tender process durations,
+- Price-related features,
+- Procurement risk indicators.
+
+
+---
+
+# 📂 Dataset Description
+
+The project uses the:
 
 **Global Public Procurement Dataset (GPPD)**
 
-kullanılmıştır.
 
-Veri seti aşağıdaki ihale bilgilerini içermektedir:
+The dataset contains detailed information about public procurement processes, including:
 
-- İhale prosedür bilgileri,
-- Tedarik türleri,
-- Alıcı bilgileri,
-- Teklif sayıları,
-- İhale süreç tarihleri,
-- Tahmini ve gerçekleşen fiyat bilgileri,
-- Risk göstergeleri.
+- Tender procedure types,
+- Supply types,
+- Buyer information,
+- Bid counts,
+- Procurement dates,
+- Estimated and final prices,
+- Risk-related indicators.
 
 
-Çalışmada veri boyutunun büyük olması nedeniyle veri setinin **Almanya (Germany)** kayıtları kullanılmıştır.
+Due to the large size of the original dataset, only **Germany procurement records** were used in this project.
 
-Ham veri dosyaları boyut nedeniyle GitHub repository içerisinde paylaşılmamıştır.
+The raw dataset is not included in this repository because of storage limitations.
 
 
 ---
 
-# ⚙️ 1. Environment Setup / Ortam Hazırlığı
+# ⚙️ 1. Environment Setup
 
-Bu aşamada çalışma ortamı hazırlanmış ve gerekli Python kütüphaneleri yüklenmiştir.
+The execution environment was prepared and required Python libraries were imported.
 
-Google Drive bağlantısı kurularak büyük boyutlu veri dosyalarına erişim sağlanmıştır.
+Google Drive was connected to access large-scale dataset files.
 
-Kullanılan temel kütüphaneler:
+Main libraries used:
 
 - Pandas
 - NumPy
@@ -87,299 +90,318 @@ Kullanılan temel kütüphaneler:
 - Plotly
 
 
-Amaç:
+The purpose of this stage was:
 
-- Veri analiz ortamını hazırlamak,
-- Büyük veri dosyalarını işleyebilmek,
-- Sonraki analiz ve modelleme aşamalarına uygun çalışma ortamı oluşturmaktır.
-
-
----
-
-# 💾 2. Dataset Loading / Veri Setinin Yüklenmesi
-
-Bu aşamada ihale veri seti çalışma ortamına yüklenmiş ve ilk kontroller gerçekleştirilmiştir.
-
-Gerçekleştirilen işlemler:
-
-- Veri setinin okunması,
-- Veri boyutunun kontrol edilmesi,
-- Kolon isimlerinin incelenmesi,
-- Veri tiplerinin kontrol edilmesi,
-- İlk gözlemlerin analiz edilmesi.
-
-
-Bu aşama ile veri yapısı anlaşılmış ve analiz süreci için gerekli değişkenler belirlenmiştir.
+- Preparing the data analysis environment,
+- Enabling large dataset processing,
+- Creating the required infrastructure for analysis and modeling.
 
 
 ---
 
-# 🔍 3. Exploratory Data Analysis (EDA) / Keşifsel Veri Analizi
+# 💾 2. Dataset Loading and Initial Validation
 
-Veri setinin genel yapısını anlamak amacıyla istatistiksel ve görsel analizler gerçekleştirilmiştir.
+In this stage, the procurement dataset was loaded and initial validation steps were performed.
 
-Yapılan analizler:
+Performed operations:
 
-- Sayısal değişkenlerin istatistiksel analizi,
-- Kategorik değişkenlerin incelenmesi,
-- Eksik değer analizi,
-- Değişken dağılımlarının incelenmesi,
-- Korelasyon analizi.
-
-
-Kullanılan yöntemler:
-
-- Descriptive statistics
-- Missing value analysis
-- Pearson correlation matrix
-- Veri dağılım grafikleri
+- Loading the dataset,
+- Checking dataset dimensions,
+- Reviewing column names,
+- Examining data types,
+- Inspecting initial records.
 
 
-Bu aşamada veri içerisindeki önemli değişkenler ve veri kalitesi problemleri belirlenmiştir.
+This step helped understand the dataset structure and identify relevant variables for further analysis.
 
 
 ---
 
-# 🧹 4. Data Preprocessing / Veri Ön İşleme
+# 🔍 3. Exploratory Data Analysis (EDA)
 
-Ham veri, analiz ve modelleme için uygun hale getirilmiştir.
+Exploratory Data Analysis was performed to understand the overall structure and characteristics of the dataset.
 
-Gerçekleştirilen işlemler:
+The following analyses were conducted:
 
-- Gereksiz kolonların kaldırılması,
-- Yüksek eksiklik oranına sahip kolonların çıkarılması,
-- Veri tiplerinin düzenlenmesi,
-- Tarih değişkenlerinin datetime formatına çevrilmesi.
-
-
-Ayrıca tarih değişkenlerinden yeni süre özellikleri oluşturulmuştur:
-
-- Submission period
-- Decision period
-- Decision duration days
-- Total process duration
+- Statistical analysis of numerical variables,
+- Analysis of categorical variables,
+- Missing value investigation,
+- Feature distribution analysis,
+- Correlation analysis.
 
 
-Amaç:
+Techniques used:
 
-Veriyi temizlemek ve özellik mühendisliği aşamasına uygun hale getirmektir.
-
-
----
-
-# ⚙️ 5. Missing Value Handling / Eksik Değer Yönetimi
-
-Bu aşamada veri setindeki eksik değerler analiz edilmiş ve uygun yöntemlerle ele alınmıştır.
-
-Uygulanan işlemler:
-
-- Eksik değer oranlarının hesaplanması,
-- %90'dan fazla eksik değer içeren kolonların değerlendirilmesi,
-- Gereksiz eksik kolonların kaldırılması,
-- Modelleme aşaması için uygun doldurma yöntemlerinin belirlenmesi.
+- Descriptive statistics,
+- Missing value analysis,
+- Pearson correlation matrix,
+- Data visualization.
 
 
-Modelleme sırasında:
-
-Sayısal değişkenler:
-- Median değer ile doldurulmuştur.
-
-Kategorik değişkenler:
-- En sık görülen değer ile doldurulmuştur.
+The purpose of this stage was to identify important patterns, data quality issues, and relationships between variables.
 
 
----
+## 📊 Visualization Results
 
-# 📦 6. Outlier Analysis / Aykırı Değer Analizi
+### Missing Value Analysis
 
-Sayısal değişkenlerdeki sıra dışı değerler incelenmiştir.
-
-Özellikle:
-
-- İhale fiyatları,
-- Teklif sayıları,
-- Süre değişkenleri
-
-analiz edilmiştir.
+![Missing Value Analysis](results/figures/missing_value_analysis.png)
 
 
-Aşırı sağa çarpık dağılıma sahip değişkenlerde:
+### Data Type Distribution
 
-**Log1p dönüşümü**
-
-uygulanmıştır.
+![Data Type Distribution](results/figures/data_type_distribution.png)
 
 
-Log dönüşümü uygulanan bazı değişkenler:
+### Pearson Correlation Matrix
 
-- tender_estimatedprice
-- tender_finalprice
-- decision_duration_days
-- submission_period
-- tender_recordedbidscount
+![Pearson Correlation Matrix](results/figures/pearson_correlation_matrix.png)
 
 
-Amaç:
+### Numeric Feature Outlier Analysis
 
-Aykırı değerlerin model performansına olan olumsuz etkisini azaltmaktır.
+![Numeric Outlier Analysis](results/figures/numeric_outlier_analysis.png)
+
+
+### Risk Level Distribution
+
+![Risk Level Distribution](results/figures/risk_level_distribution.png)
+
+
+### Risk Indicator Count Distribution
+
+![Risk Indicator Count Distribution](results/figures/risk_indicator_count_distribution.png)
+
+
+### Bid Count Distribution by Risk Level
+
+![Bid Count Distribution by Risk Level](results/figures/bid_count_distribution_by_risk_level.png)
 
 
 ---
 
-# ⚙️ 7. Feature Engineering / Özellik Mühendisliği
+# 🧹 4. Data Preprocessing
 
-Ham veri içerisinden model performansını artırabilecek yeni özellikler oluşturulmuştur.
+The raw dataset was cleaned and transformed into a suitable format for further analysis and modeling.
+
+Performed operations:
+
+- Removing unnecessary columns,
+- Removing variables with extremely high missing ratios,
+- Correcting data types,
+- Converting date columns into datetime format.
 
 
-## Rekabet Özellikleri
+New time-based features were created:
+
+- Submission period,
+- Decision period,
+- Decision duration days,
+- Total process duration.
+
+
+The purpose of this stage was to improve data quality and prepare the dataset for feature engineering.
+
+
+---
+
+# ⚙️ 5. Missing Value Handling
+
+Missing values were analyzed and handled using appropriate preprocessing techniques.
+
+Performed operations:
+
+- Calculating missing value percentages,
+- Evaluating highly missing columns,
+- Removing irrelevant missing features,
+- Applying suitable imputation strategies.
+
+
+For numerical variables:
+
+- Missing values were handled using median imputation.
+
+
+For categorical variables:
+
+- Missing values were filled using the most frequent category.
+
+
+---
+
+# 📦 6. Outlier Analysis and Transformation
+
+Numerical variables were analyzed to detect potential outliers and extreme values.
+
+Special attention was given to:
+
+- Tender prices,
+- Bid counts,
+- Duration variables.
+
+
+Highly skewed variables were transformed using:
+
+**Log1p transformation**
+
+
+Applied transformations include:
+
+- tender_estimatedprice,
+- tender_finalprice,
+- decision_duration_days,
+- submission_period,
+- tender_recordedbidscount.
+
+
+The goal was to reduce the impact of extreme values and improve model performance.
+
+
+---
+
+# ⚙️ 7. Feature Engineering
+
+New meaningful features were created from raw procurement variables.
+
+
+## Competition Features
 
 ### low_competition
 
-Az teklif verilen ihaleleri belirlemek amacıyla oluşturulmuştur.
+Identifies tenders with a low level of competition based on bid information.
+
 
 ### has_bids
 
-İhalede teklif bulunup bulunmadığını gösterir.
+Indicates whether a tender received any bids.
 
 
-## Süre Özellikleri
+## Time-Based Features
 
-Oluşturulan değişkenler:
+Created variables:
 
-- submission_period
-- decision_period
-- decision_duration_days
-- total_process_duration
+- submission_period,
+- decision_period,
+- decision_duration_days,
+- total_process_duration.
 
 
-## Risk Özellikleri
-
-Risk göstergeleri kullanılarak:
-
-```
-risk_indicator_count
-```
-
-isimli toplam risk skoru oluşturulmuştur.
+These features represent the duration characteristics of procurement processes.
 
 
 ---
 
-# 🚩 Risk Seviyesi Oluşturma / Risk Level Creation
+# 🚩 Risk Score and Risk Level Creation
 
-Modelin hedef değişkeni olan:
+The target variable used for machine learning:
 
 ```
 risk_level
 ```
 
-risk göstergeleri kullanılarak oluşturulmuştur.
+was created based on procurement risk indicators.
 
 
-Kullanılan risk göstergeleri:
+Risk indicators used:
 
-- corr_nocft
-- corr_proc
-- corr_decp
-- corr_singleb
-- corr_subm
-- corr_buyer_concentration
-- corr_tax_haven
+- corr_nocft,
+- corr_proc,
+- corr_decp,
+- corr_singleb,
+- corr_subm,
+- corr_buyer_concentration,
+- corr_tax_haven.
 
 
-Bu değişkenlerin toplamı alınarak:
+The total number of risk indicators was calculated as:
 
 ```
 risk_indicator_count
 ```
 
-oluşturulmuştur.
+
+Risk categories were generated as follows:
 
 
-Risk skoruna göre sınıflandırma:
-
-| Risk Skoru | Risk Seviyesi |
+| Risk Indicator Count | Risk Level |
 |---|---|
-| 0-1 | Düşük Risk |
-| 2 | Orta Risk |
-| 3+ | Yüksek Risk |
+| 0-1 | Low Risk |
+| 2 | Medium Risk |
+| 3+ | High Risk |
 
 
-Modelleme aşamasında veri sızıntısını önlemek amacıyla risk seviyesini oluşturan risk kolonları model girişlerinden çıkarılmıştır.
-
-
----
-
-# 🎯 8. Feature Selection / Özellik Seçimi
-
-Bu aşamada makine öğrenmesi modellerinde kullanılacak özellikler belirlenmiştir.
-
-
-Amaç:
-
-- Gereksiz değişkenleri kaldırmak,
-- Tekrarlayan bilgileri azaltmak,
-- Model karmaşıklığını azaltmak,
-- Daha anlamlı özelliklerle tahmin performansını artırmaktır.
-
-
-Yapılan işlemler:
-
-- Korelasyon analizi,
-- Özellik değerlendirmesi,
-- Risk kolonlarının model girdilerinden çıkarılması.
+To prevent data leakage, risk indicator variables used to generate the target variable were excluded from model input features.
 
 
 ---
 
-# 🤖 9. Data Preparation for Machine Learning / Makine Öğrenmesi İçin Veri Hazırlama
+# 🎯 8. Feature Selection
 
-Seçilen özellikler makine öğrenmesi algoritmalarına uygun hale getirilmiştir.
+Feature selection was performed to determine the most informative variables for machine learning models.
+
+Objectives:
+
+- Remove redundant features,
+- Reduce unnecessary complexity,
+- Improve model efficiency,
+- Select meaningful predictors.
 
 
-## Sayısal Değişkenler
+Performed operations:
 
-Uygulanan işlemler:
+- Correlation analysis,
+- Feature evaluation,
+- Removal of target-related risk variables.
 
-- Eksik değer doldurma,
-- Ölçeklendirme.
+
+---
+
+# 🤖 9. Machine Learning Data Preparation
+
+Selected features were prepared for machine learning algorithms.
 
 
-## Kategorik Değişkenler
+## Numerical Features
 
-Uygulanan işlemler:
+Applied preprocessing:
 
-- Eksik değer doldurma,
+- Missing value imputation,
+- Feature scaling.
+
+
+## Categorical Features
+
+Applied preprocessing:
+
+- Missing value imputation,
 - One-Hot Encoding.
 
 
 ## Target Encoding
 
-Risk seviyeleri:
+The target variable:
 
-- Düşük Risk
-- Orta Risk
-- Yüksek Risk
+- Low Risk,
+- Medium Risk,
+- High Risk
 
-LabelEncoder kullanılarak sayısal değerlere dönüştürülmüştür.
+was transformed into numerical labels using **LabelEncoder**.
 
 
 ## Train-Test Split
 
-Veri seti:
+The dataset was divided into:
 
-- %80 eğitim,
-- %20 test
-
-olarak ayrılmıştır.
+- 80% Training Data,
+- 20% Testing Data.
 
 
-`stratify` kullanılarak risk sınıflarının eğitim ve test veri setlerinde dengeli kalması sağlanmıştır.
+The `stratify` parameter was used to preserve class distribution between training and testing datasets.
 
 
 ---
 
-# 🛠️ Kullanılan Teknolojiler
+# 🛠️ Technologies Used
 
 - Python
 - Pandas
@@ -393,7 +415,7 @@ olarak ayrılmıştır.
 
 ---
 
-# 📁 Proje Yapısı
+# 📁 Project Structure
 
 ```
 Ihale-Risk-Tahmini/
@@ -401,14 +423,24 @@ Ihale-Risk-Tahmini/
 │
 ├── ihale_risk_prediction.ipynb
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+│
+└── results/
+    └── figures/
+        ├── missing_value_analysis.png
+        ├── data_type_distribution.png
+        ├── pearson_correlation_matrix.png
+        ├── numeric_outlier_analysis.png
+        ├── risk_level_distribution.png
+        ├── risk_indicator_count_distribution.png
+        └── bid_count_distribution_by_risk_level.png
 ```
 
 
 ---
 
-# 📌 Sonuç / Conclusion
+# 📌 Conclusion
 
-Bu proje kapsamında kamu ihale verileri analiz edilmiş, risk göstergeleri kullanılarak yeni özellikler oluşturulmuş ve makine öğrenmesi modelleri için gerekli veri hazırlama süreci tamamlanmıştır.
+This project analyzed public procurement data, created meaningful risk-related features, and prepared a complete machine learning pipeline for procurement risk prediction.
 
-Oluşturulan pipeline ile ihale süreçlerindeki risk seviyelerinin tahmin edilmesi hedeflenmektedir.
+The developed pipeline provides a foundation for training machine learning models that can classify procurement processes into different risk categories based on historical tender characteristics.
